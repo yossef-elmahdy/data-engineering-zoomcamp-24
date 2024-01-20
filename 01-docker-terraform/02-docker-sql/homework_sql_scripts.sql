@@ -16,7 +16,7 @@ ORDER BY 2 DESC;
 -- Which were the 3 pick up Boroughs that had a sum of total_amount superior to 50000?
 SELECT pickup_zone."Borough"
 	, SUM(green.total_amount) AS sum_amnt
-FROM public.green_taxi_data as green 
+FROM green_taxi_data as green 
 JOIN zones as pickup_zone 
 ON green."PULocationID" = pickup_zone."LocationID"
 WHERE pickup_zone."Borough" <> 'Unknown'
@@ -29,7 +29,7 @@ ORDER BY 2 DESC;
 -- For the passengers picked up in September 2019 in the zone name Astoria which was the drop off zone that had the largest tip?
 -- We want the name of the zone, not the id.
 SELECT dropoff_zone."Zone", max(green.tip_amount)
-FROM public.green_taxi_data as green 
+FROM green_taxi_data as green 
 JOIN zones as pickup_zone 
 ON green."PULocationID" = pickup_zone."LocationID"
 JOIN zones as dropoff_zone 
