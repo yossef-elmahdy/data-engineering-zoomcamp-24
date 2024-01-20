@@ -4,9 +4,9 @@ RUN apt-get install wget
 RUN pip install pandas sqlalchemy psycopg2
 
 WORKDIR /app
-COPY ingest_data.py ingest_data.py 
+COPY ingest_data_green.py ingest_data_green.py 
 
-ENTRYPOINT [ "python", "ingest_data.py" ]
+ENTRYPOINT [ "python", "ingest_data_green.py" ]
 
 
 # winpty docker run -it --network=pg-network ingest_taxi_green:v001 --user root --password root --host pgdatabase --port 5432 --table_name green_taxi_data \
