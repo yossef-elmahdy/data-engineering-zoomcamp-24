@@ -1,3 +1,7 @@
+# Jupyter notebook checkpoints 
+.ipynb_checkpoints
+
+# JSON files (escpecially for GCP Service Account Keys) 
 *.json
 
 # Local .terraform directories
