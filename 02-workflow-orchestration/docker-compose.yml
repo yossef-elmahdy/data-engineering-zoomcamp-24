@@ -1,0 +1,60 @@
+version: '3.9'
+
+services:
+  pgdatabase:
+    image: postgres
+    restart: on-failure
+    container_name: pgdatabase
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=root
+      - POSTGRES_DB=ny_taxi
+    networks: 
+      - pg-network
+  pgadmin: 
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports: 
+      - 8080:80
+    networks: 
+      - pg-network 
+  mage:
+    image: mageai/mageai:latest
+    command: mage start ${PROJECT_NAME}
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      USER_CODE_PATH: /home/src/${PROJECT_NAME}
+      POSTGRES_DBNAME: ${POSTGRES_DBNAME}
+      POSTGRES_SCHEMA: ${POSTGRES_SCHEMA}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+    ports:
+      - 6789:6789
+    volumes:
+      - .:/home/src/
+      - ~/Documents/secrets/personal-gcp.json:/home/src/personal-gcp.json
+    networks:
+      - pg-network
+    restart: on-failure:5
+     
+
+volumes:
+  db: 
+    external: true
+
+networks: 
+  pg-network: 
+    external: true 

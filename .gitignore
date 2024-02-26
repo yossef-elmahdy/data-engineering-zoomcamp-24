@@ -1,3 +1,6 @@
+# Environment variables
+.env
+
 # Jupyter notebook checkpoints 
 .ipynb_checkpoints
 
@@ -40,3 +43,8 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Mage project 
+01-docker-terraform/02-docker-sql/yossef-zoomcamp24/**
+01-docker-terraform/02-docker-sql/mage_data/**
+01-docker-terraform/02-docker-sql/Dockerfile_Mage

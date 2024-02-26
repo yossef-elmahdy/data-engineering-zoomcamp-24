@@ -1,0 +1,3 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "ethereal_crystal"}, "timestamp": 1708610285, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "delightful_star"}, "timestamp": 1708612335, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "api_to_gcp_copy"}, "timestamp": 1708619704, "user": null}
